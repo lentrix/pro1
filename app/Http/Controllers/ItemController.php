@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    public function index() {
-        $items = Item::get();
+    public function index($search = '') {
         return inertia('Items/Index',[
-            'items' => $items
+            'items' => fn() => Item::where('name','like',"%$search%")->orWhere('description','like',"%$search%")->get()
         ]);
     }
 
