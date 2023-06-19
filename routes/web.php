@@ -36,10 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/items', [ItemController::class, 'index'])->name('items');
-    Route::get('/items/{search}', [ItemController::class, 'index']);
     Route::get('/items/create', [ItemController::class, 'create']);
     Route::post('/items', [ItemController::class, 'store']);
     Route::get('/items/{item}', [ItemController::class, 'show']);
+    Route::get('/items/search/{search}', [ItemController::class, 'index']);
 });
 
 require __DIR__.'/auth.php';

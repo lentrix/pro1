@@ -43,7 +43,7 @@ const prop = defineProps({
 
 
 function search(e) {
-    router.visit('/items/' + e.target.value, {
+    router.visit('/items/search/' + e.target.value, {
         only: ['items']
     })
 
