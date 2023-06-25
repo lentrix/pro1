@@ -44,4 +44,10 @@ class ItemController extends Controller
             'item' => $item
         ]);
     }
+
+    public function toggle(Item $item) {
+        $item->enabled = !$item->enabled;
+        $item->save();
+        return back();
+    }
 }
