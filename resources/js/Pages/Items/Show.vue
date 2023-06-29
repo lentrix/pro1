@@ -19,7 +19,13 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white shadow rounded py-6 flex">
                 <img :src="item.picUrl" alt="Product photo" class="aspect-square w-[40%] object-cover">
                 <div class="pl-6 w-full flex flex-col">
-                    <h4 class="text-3xl mb-6">{{ item.name }}</h4>
+                    <div class="flex">
+                        <h4 class="text-3xl mb-6 flex-1">{{ item.name }}</h4>
+
+                        <div>
+                            <Link :href="'/items/' + item.id" method="delete" class="p-2 bg-red-700 rounded shadow text-white hover:bg-red-400">Delete</Link>
+                        </div>
+                    </div>
                     <div class="p-4 bg-gray-100 flex-1">
                         {{ item.description }}
                     </div>
@@ -43,10 +49,15 @@
 <script setup>
 import { Link, Head } from '@inertiajs/vue3'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import { usePage } from '@inertiajs/vue3';
+import { computed } from 'vue'
 
+const page = usePage()
+
+const user = computed(() => page.props.auth.user)
 
 const prop = defineProps({
-    'item': Object
+    'item': Object,
 })
 
 </script>

@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/items', [ItemController::class, 'store']);
     Route::get('/items/{item}', [ItemController::class, 'show']);
     Route::get('/items/search/{search}', [ItemController::class, 'index']);
+    Route::post('/items/toggle/{item}',[ItemController::class, 'toggleEnabled']);
+    Route::delete('/items/{item}',[ItemController::class, 'destroy'])->middleware('role:admin');
 });
 
 require __DIR__.'/auth.php';

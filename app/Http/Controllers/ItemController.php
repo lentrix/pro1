@@ -44,4 +44,16 @@ class ItemController extends Controller
             'item' => $item
         ]);
     }
+
+    public function toggleEnabled(Item $item) {
+        $item->enabled = !$item->enabled;
+        $item->save();
+
+        return back();
+    }
+
+    public function destroy(Item $item) {
+        $item->delete();
+        return redirect('/items')->with('Info','An item has just been deleted.');
+    }
 }
